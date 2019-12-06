@@ -89,7 +89,7 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Altera item
         $validator = Validator::make($request->all(), [
           'text' => 'required'
         ]);
@@ -115,6 +115,11 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Deleta item
+        $item = Item::find($id);
+        $item->delete();
+
+        $response = array('response' => 'Item deleted', 'success' => 'true');
+        return $response;
     }
 }
